@@ -1,5 +1,5 @@
 import requests
-import pytest
+
 
 class CreateObject:
     response = None
