@@ -52,10 +52,10 @@ def test_update_object(obj_id):
             "Hard disk size": "1 TB"
         }
     }
-    response = requests.put(f'https://api.restful-api.dev/objects/{obj_id}',
-    json = payload
-    ).json()
-    assert response['name'] == payload['name']
+    response = requests.put(f'https://api.restful-api.dev/objects/{obj_id}', json=payload)
+    response_json = response.json()
+    assert response_json['name'] == payload['name']
+    assert response.status_code == 200
 
 def test_delete_object(obj_id):
     response = requests.delete(f'https://api.restful-api.dev/objects/{obj_id}')
