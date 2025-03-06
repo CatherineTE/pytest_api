@@ -5,10 +5,7 @@ from endpoints.get_object import GetObject
 from endpoints.update_object import UpdateObject
 
 
-
-def test_create_object():
-    new_create_object = CreateObject()
-    payload = {
+payload = {
       "name": "Apple MacBook Pro 17",
       "data": {
          "year": 2019,
@@ -17,6 +14,9 @@ def test_create_object():
          "Hard disk size": "1 TB"
       }
     }
+
+def test_create_object():
+    new_create_object = CreateObject()
     new_create_object.post(payload=payload)
     new_create_object.check_response_is_200()
     new_create_object.check_name(payload['name'])
