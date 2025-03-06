@@ -12,32 +12,22 @@ on:
         options:
           - all
 
-
 jobs:
-  run-tests:
+  test:
     runs-on: ubuntu-latest
-    name: Tests
+
     steps:
-     - name: Copy source code
-       uses: actions/checkout@v4
-     - name: Set up Python env
-       uses: actions/setup-python@v5  
-       with:
-         python-version: "3.10"
-     - name: Install dependencies
-       run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-     - name: Get Chrome version
-       run: |
-          CHROME_VERSION=$(google-chrome --version)
-          echo "Detected Chrome version: $CHROME_VERSION"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-     - name: Get ChromeDriver version
-       run: |
-        DRIVER_VERSION=$(chromedriver --version)
-        echo "Detected ChromeDriver version: $DRIVER_VERSION"
-       
-     - name: Run tests   
-       run: pytest -v
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Pytest
+        run: pytest -v
+
