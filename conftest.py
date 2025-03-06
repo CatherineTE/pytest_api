@@ -14,5 +14,5 @@ def obj_id():
       }
    }
     response = requests.post('https://api.restful-api.dev/objects', json = payload).json()
-    print(response)
-    return response['id']
+    yield response['id']
+    requests.delete(f'https://api.restful-api.dev/objects/{response["id"]}')
